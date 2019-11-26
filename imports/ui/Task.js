@@ -15,6 +15,10 @@ export default class Task extends Component {
         Tasks.remove(this.props.task._id);
     }
 
+    setAnonymity(userName) {
+        return userName ? userName : 'Anonimous';
+    }
+
     render() {
         // Give tasks a different className when they are checked off,
         // so that we can style them nicely in CSS
@@ -33,7 +37,9 @@ export default class Task extends Component {
                     onClick={this.toggleChecked.bind(this)}
                 />
 
-                <span className="text">{this.props.task.text}</span>
+                <span className="text">
+                    <strong>{this.setAnonymity(this.props.task.username)}</strong>: {this.props.task.text}
+                </span>
             </li>
         );
     }
